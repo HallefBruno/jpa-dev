@@ -1,16 +1,16 @@
 
 package com.devjpa.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 /**
  *
@@ -26,8 +26,8 @@ public class Estado implements Serializable {
     
     private String nome;
     
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "estado")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @OneToMany(mappedBy = "estado")
     private List<Cidade> cidades;
     
 }

@@ -1,33 +1,32 @@
 $(document).ready(function () {
 
     let select = $(".custom-select");
-    let idEstado;
+    let idCidade;
     
-    $.getJSON("estados/todos", function (result) {
+    $.getJSON("bairros/cidades/todas", function (result) {
         $.each(result, function (item) {
             select.append($('<option></option>').val(result[item].id).text(result[item].nome)); 
         });
     });
     
     select.on('change',function () {
-        idEstado = $(this).val();
+        idCidade = $(this).val();
     });
 
-    
-    $("#salvarCidade").on("click", function () {
+    $("#salvarBairro").on("click", function () {
 
-        let cidade = {
+        let bairro = {
             nome:$("#nome").val(),
-            estado: {
-                id:idEstado
+            cidade: {
+                id:idCidade
             }
         };
         
         $.ajax({
-            url: "cidades/salvar",
+            url: "bairros/salvar",
             type: 'POST',
             dataType: "json",
-            data: JSON.stringify(cidade),
+            data: JSON.stringify(bairro),
             contentType: "application/json",
             success: function (data, textStatus, jqXHR) {
                 if(data) {
