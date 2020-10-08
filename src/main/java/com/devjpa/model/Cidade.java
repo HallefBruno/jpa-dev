@@ -1,6 +1,7 @@
 
 package com.devjpa.model;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -18,7 +19,7 @@ import lombok.Data;
  */
 @Data
 @Entity
-public class Cidade {
+public class Cidade implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

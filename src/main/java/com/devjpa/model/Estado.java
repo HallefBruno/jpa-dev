@@ -1,6 +1,8 @@
 
 package com.devjpa.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -16,7 +18,7 @@ import lombok.Data;
  */
 @Data
 @Entity
-public class Estado {
+public class Estado implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +26,7 @@ public class Estado {
     
     private String nome;
     
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "estado")
     private List<Cidade> cidades;
     
