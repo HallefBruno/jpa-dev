@@ -6,14 +6,16 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 /**
  *
@@ -32,9 +34,10 @@ public class Cidade implements Serializable {
     @JoinColumn(name = "id_estado")
     @ManyToOne
     private Estado estado;
-
-    @OneToMany(cascade = CascadeType.REMOVE)
-    @JoinTable
+    
+    @JsonIgnore
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "cidade")
     private List<Bairro> bairros;
     
 }
