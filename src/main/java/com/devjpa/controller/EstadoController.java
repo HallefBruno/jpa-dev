@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -23,11 +22,6 @@ public class EstadoController {
     
     @Autowired
     private EstadoService estadoService;
-    
-    @GetMapping
-    public ModelAndView modelAndView() {
-        return new ModelAndView("Estado");
-    }
     
     @PostMapping("salvar")
     public ResponseEntity<?> salvar(@RequestBody Estado estado) {

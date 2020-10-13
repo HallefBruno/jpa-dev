@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Description;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
@@ -46,5 +47,15 @@ public class WebConfig implements WebMvcConfigurer{
         viewResolver.setCharacterEncoding("UTF-8");
         return viewResolver;
     }
+    
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+       registry.addMapping("/**")
+            .allowedOrigins("*")
+            .allowedMethods("POST", "OPTIONS", "GET", "PUT", "DELETE")
+            .allowedHeaders("*")
+            .allowCredentials(true).maxAge(3600);
+    }
+
     
 }

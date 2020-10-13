@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -26,12 +25,7 @@ public class BairroController {
     
     @Autowired
     private CidadeService cidadeService;
-    
-    @GetMapping
-    public ModelAndView modelAndView() {
-        return new ModelAndView("Bairro");
-    }
-    
+
     @PostMapping("salvar")
     public ResponseEntity<?> salvar(@RequestBody Bairro bairro) {
         return ResponseEntity.ok(bairroService.salvar(bairro));
